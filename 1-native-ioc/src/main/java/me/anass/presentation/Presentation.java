@@ -1,11 +1,9 @@
 package me.anass.presentation;
 
-import me.anass.dao.DaoImpl;
 import me.anass.dao.IDao;
 import me.anass.metier.IMetierImpl;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 
