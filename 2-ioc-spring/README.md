@@ -7,7 +7,7 @@ Le but c'est de faciliter l'injection de dépendances en utilisant un framework 
     Pour faire de l'injection de dépendances avec Spring, on doit ajouter les fichiers Jar de spring-core, spring-context et spring-beans dans le classpath du projet.
     Pour éviter cela, on peut utiliser Maven, pour faire la gestion des dépendances du projet, et aussi la gestion du cycle de vie du logiciel.
 
-## Declaration des dépendances dans pom.xml
+## Déclaration des dépendances dans pom.xml
 
 ```xml
 <dependencies>
@@ -150,7 +150,7 @@ public class IMetierImpl implements IMetier {
 }
 ```
 
-###PresentationSpringAnnotation.java
+### PresentationSpringAnnotation.java
 ```java
 public class PresentationSpringAnnotation {
     public static void main(String[] args) {
