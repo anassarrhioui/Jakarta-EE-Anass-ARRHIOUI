@@ -7,6 +7,5 @@
     <bean id="metier" class="me.anass.metier.IMetierImpl2">
         <property name="dao" ref="dao"/>
         <!--<constructor-arg ref=""></constructor-arg>-->
-
     </bean>
 </beans>

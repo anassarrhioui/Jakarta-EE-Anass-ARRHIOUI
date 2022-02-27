@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans>
+    <bean id="dao" class="me.anass.test.dao.Dao"/>
+
+    <bean id="metier" class="me.anass.test.metier.Metier">
+        <property name="dao" ref="dao"/>
+    </bean>
+</beans>
