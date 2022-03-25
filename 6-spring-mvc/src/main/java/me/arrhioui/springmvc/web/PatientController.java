@@ -7,9 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,7 @@ public class PatientController {
             @RequestParam(value = "size", defaultValue = "5") int size,
             @RequestParam(value = "keyword", defaultValue = "") String keyword
     ){
-        Page<Patient> pagePatient = patientRepository.findByNomContains(keyword, PageRequest.of(page, size));
+        Page<Patient> pagePatient = patientRepository.findByNomContainsOrderByIdDesc(keyword, PageRequest.of(page, size));
         if(pagePatient.getTotalPages()-1 < page)
             return "redirect:/index?keyword="+keyword;
         System.out.println("page = " + page);
@@ -36,6 +37,18 @@ public class PatientController {
         return "patients";
     }
 
+    @GetMapping("/formPatient")
+    public String formPatient(){
+        return "formPatient";
+    }
+
+    @PostMapping("/addPatient")
+    public String addPatient(Patient patient){
+        patientRepository.save(patient);
+        return "redirect:/index";
+    }
+
+
     @GetMapping("/delete")
     public String delete(@RequestParam Long id, @RequestParam String keyword, @RequestParam int page){
         patientRepository.deleteById(id);
@@ -46,5 +59,11 @@ public class PatientController {
     @GetMapping("/")
     public String home( Long id){
         return "redirect:/index";
+    }
+
+    @GetMapping("/api")
+    @ResponseBody
+    public List<Patient> getAllPatient(){
+        return patientRepository.findAll();
     }
 }
