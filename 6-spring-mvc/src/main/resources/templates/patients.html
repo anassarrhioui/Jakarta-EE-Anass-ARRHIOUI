@@ -36,7 +36,7 @@
                     <td th:text="${p.estMalade}"></td>
                     <td th:text="${p.score}"></td>
                     <td>
-                        <a class="btn btn-danger" th:href="@{delete(id=${p.id})}">Delete</a>
+                        <a class="btn btn-danger" th:href="@{delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}">Delete</a>
                     </td>
                 </tr>
                 </tbody>

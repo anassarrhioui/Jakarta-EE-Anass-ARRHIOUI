@@ -25,6 +25,10 @@ public class PatientController {
             @RequestParam(value = "keyword", defaultValue = "") String keyword
     ){
         Page<Patient> pagePatient = patientRepository.findByNomContains(keyword, PageRequest.of(page, size));
+        if(pagePatient.getTotalPages()-1 < page)
+            return "redirect:/index?keyword="+keyword;
+        System.out.println("page = " + page);
+        System.out.println("pagePatient.getTotalPages() = " + pagePatient.getTotalPages());
         model.addAttribute("patientList", pagePatient.getContent());
         model.addAttribute("pagesNbr", new int[pagePatient.getTotalPages()]);
         model.addAttribute("currentPage", page);
@@ -33,9 +37,9 @@ public class PatientController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam Long id){
+    public String delete(@RequestParam Long id, @RequestParam String keyword, @RequestParam int page){
         patientRepository.deleteById(id);
-        return "redirect:/index";
+        return String.format("redirect:/index?page=%d&keyword=%s", page, keyword);
 
     }
 
