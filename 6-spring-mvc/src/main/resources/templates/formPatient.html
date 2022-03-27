@@ -13,19 +13,23 @@
         <form method="post" th:action="@{addPatient}">
             <div class="form-group">
                 <label for="nom">Nom</label>
-                <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom du patient">
+                <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom du patient" th:value="${patient.nom}">
+                <small th:errors="${patient.nom}" class="invalid-feedback text-danger"></small>
             </div>
             <div class="form-group">
                 <label for="estMalade">Est Malade</label>
-                <input type="checkbox" name="estMalade" class="form-control" style="width: auto;" id="estMalade">
+                <input type="checkbox" name="estMalade" class="form-control" style="width: auto;" id="estMalade" th:checked="${patient.estMalade}">
+                <small th:errors="${patient.estMalade}" class="invalid-feedback text-danger"></small>
             </div>
             <div class="form-group">
                 <label for="dateNaissance">Date de Naissance</label>
-                <input type="date" name="dateNaissance" class="form-control" id="dateNaissance" placeholder="Date de Naissance du patient">
+                <input type="date" name="dateNaissance" class="form-control" id="dateNaissance" placeholder="Date de Naissance du patient" th:value="${patient.dateNaissance}">
+                <small th:errors="${patient.dateNaissance}" class="invalid-feedback text-danger"></small>
             </div>
             <div class="form-group">
                 <label for="score">Score</label>
-                <input type="number" name="score" min="0" max="10" class="form-control" id="score" placeholder="Score du patient">
+                <input type="number" name="score" min="0" max="10" class="form-control" id="score" placeholder="Score du patient" th:value="${patient.score}">
+                <small th:errors="${patient.score}" class="invalid-feedback text-danger"></small>
             </div>
 
             <button type="submit" class="btn btn-success">Ajouter</button>

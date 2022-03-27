@@ -7,10 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -38,12 +40,18 @@ public class PatientController {
     }
 
     @GetMapping("/formPatient")
-    public String formPatient(){
+    public String formPatient(Model model){
+        model.addAttribute("patient", new Patient());
         return "formPatient";
     }
 
     @PostMapping("/addPatient")
-    public String addPatient(Patient patient){
+    public String addPatient(@Valid Patient patient, Model model, BindingResult bindingResult){
+        System.out.println("Hello");
+        if(bindingResult.hasErrors()){
+            model.addAttribute("patient", patient);
+            return "formPatient";
+        }
         patientRepository.save(patient);
         return "redirect:/index";
     }
