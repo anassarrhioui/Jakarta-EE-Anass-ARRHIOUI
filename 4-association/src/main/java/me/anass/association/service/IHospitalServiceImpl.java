@@ -1,5 +1,6 @@
 package me.anass.association.service;
 
+import lombok.AllArgsConstructor;
 import me.anass.association.entity.Consultation;
 import me.anass.association.entity.Medecin;
 import me.anass.association.entity.Patient;
@@ -16,20 +17,13 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class IHospitalServiceImpl implements IHospitalService {
 
-    private PatientRepository patientRepository;
-    private MedecinRepository medecinRepository;
-    private RendezVousRepository rendezVousRepository;
-    private ConsultationRepository consultationRepository;
-
-    @Autowired
-    public IHospitalServiceImpl(PatientRepository patientRepository, MedecinRepository medecinRepository, RendezVousRepository rendezVousRepository, ConsultationRepository consultationRepository) {
-        this.patientRepository = patientRepository;
-        this.medecinRepository = medecinRepository;
-        this.rendezVousRepository = rendezVousRepository;
-        this.consultationRepository = consultationRepository;
-    }
+    private final PatientRepository patientRepository;
+    private final MedecinRepository medecinRepository;
+    private final RendezVousRepository rendezVousRepository;
+    private final ConsultationRepository consultationRepository;
 
     @Override
     public Patient save(Patient patient) {
