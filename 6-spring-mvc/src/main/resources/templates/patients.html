@@ -3,6 +3,7 @@
         lang="en"
         xmlns:th="http://www.thymeleaf.org"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
         layout:decorate="layout">
 
 <body>
@@ -32,10 +33,10 @@
                     <td th:text="${p.dateNaissance}"></td>
                     <td th:text="${p.estMalade}"></td>
                     <td th:text="${p.score}"></td>
-                    <td>
+                    <td  sec:authorize="hasRole('ADMIN')">
                         <a class="btn btn-danger" th:href="@{delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}">Delete</a>
                     </td>
-                    <td>
+                    <td  sec:authorize="hasRole('ADMIN')">
                         <a class="btn btn-warning" th:href="@{editPatient(id=${p.id})}">Edit</a>
                     </td>
                 </tr>

@@ -74,7 +74,7 @@ public class PatientController {
 
     @GetMapping("/")
     public String home( Long id){
-        return "redirect:/index";
+        return "home";
     }
 
     @GetMapping("/api")
