@@ -19,6 +19,7 @@ public class Patient {
     private Long id;
 
     @NotNull
+    @NotEmpty
     @Size(min = 3, max = 20)
     private String nom;
     @Temporal(TemporalType.DATE)
