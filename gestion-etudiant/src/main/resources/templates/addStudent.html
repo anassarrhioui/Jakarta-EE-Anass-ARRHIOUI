@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un etudiant</title>
+</head>
+<body>
+    <div layout:fragment="container" class="container mt-5">
+        <form th:method="post" th:action="@{addStudent}" th:object="${student}">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom" th:value="${student.nom}">
+                <span th:errors="${student.nom}" class="invalid-feedback text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prenom</label>
+                <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prenom" th:value="${student.prenom}">
+                <span th:errors="${student.prenom}" class="invalid-feedback text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <select name="genre" class="form-control" id="genre" >
+                    <option value="F">F</option>
+                    <option value="M">M</option>
+                </select>
+                <span th:errors="${student.genre}" class="invalid-feedback text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="E-Mail" th:value="${student.email}">
+                <span th:errors="${student.email}" class="invalid-feedback text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="enRegle">En regle</label>
+                <input type="checkbox" name="enRegle" class="form-control" style="width: auto;" id="enRegle" th:checked="${student.enRegle}">
+                <span th:errors="${student.enRegle}" class="invalid-feedback text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="dateNaissance">Date de Naissance</label>
+                <input type="date" name="dateNaissance" class="form-control" id="dateNaissance" placeholder="Date de Naissance" th:value="${student.dateNaissance}">
+                <span th:errors="${student.dateNaissance}" class="invalid-feedback text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">Ajouter</button>
+        </form>
+    </div>
+</body>
+</html>
