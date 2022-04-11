@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+        layout:decorate="layout">
+
+<body>
+
+<div class="container mt-5" layout:fragment="container">
+    <form method="post" th:action="@{/login}"></form>
+    <div>
+        <label>
+            Username
+            <input type="text" name="username">
+        </label>
+    </div>
+    <div>
+        <label>
+            Password
+            <input type="password" name="password">
+        </label>
+    </div>
+
+    <button></button>
+</div>
+
+</body>
+</html>
