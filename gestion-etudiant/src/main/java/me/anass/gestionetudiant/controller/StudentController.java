@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -45,7 +46,7 @@ public class StudentController {
     }
 
     //TODO : Transform Get to Delete with JavaScript
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public String delete(
             @RequestParam Long id,
             @RequestParam(name = "keyword", defaultValue = "") String currentSearch,
@@ -72,7 +73,7 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public String addStudent(Student student, Model model, BindingResult bindingResult){
+    public String addStudent(@Valid Student student, Model model, BindingResult bindingResult){
         System.out.println("student = " + student);
         System.out.println("bindingResult = " + bindingResult);
         System.out.println("bindingResult.hasErrors() = " + bindingResult.hasErrors());
