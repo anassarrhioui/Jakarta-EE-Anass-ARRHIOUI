@@ -9,10 +9,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -28,6 +25,17 @@ public class StudentController {
         return "layout";
     }
 
+    @GetMapping("/login?")
+    public String redirectAfterLogin(){
+        return "layout";
+    }
+
+    @GetMapping("/error")
+    public String error(){
+        return "layout";
+    }
+
+
     @GetMapping("/index")
     public String patient(
             Model model,
@@ -35,9 +43,8 @@ public class StudentController {
             @RequestParam(value = "size", defaultValue = "5") int size,
             @RequestParam(value = "keyword", defaultValue = "") String keyword
     ){
-        Page<Student> studentPage = studentRepository.findByNomContainsOrderByIdDesc(keyword, PageRequest.of(page, size));
-        if(studentPage.getTotalPages()-1 < page)
-            return "redirect:/index?keyword="+keyword;
+        Page<Student> studentPage = studentRepository.findByNomContainsIgnoreCaseOrPrenomContainsIgnoreCaseOrderByIdDesc(keyword, keyword,PageRequest.of(page, size));
+
         model.addAttribute("students", studentPage.getContent());
         model.addAttribute("pagesNbr", new int[studentPage.getTotalPages()]);
         model.addAttribute("currentPage", page);
@@ -45,8 +52,7 @@ public class StudentController {
         return "students";
     }
 
-    //TODO : Transform Get to Delete with JavaScript
-    @DeleteMapping("/delete")
+    @GetMapping("/delete")
     public String delete(
             @RequestParam Long id,
             @RequestParam(name = "keyword", defaultValue = "") String currentSearch,

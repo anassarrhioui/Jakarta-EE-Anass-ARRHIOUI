@@ -43,8 +43,8 @@
                     <th>Date Naissance</th>
                     <th>Genre</th>
                     <th>En Regle</th>
-                    <th>Delete</th>
-                    <th>Edit</th>
+                    <th sec:authorize="hasAuthority('ADMIN')" >Delete</th>
+                    <th sec:authorize="hasAuthority('ADMIN')" >Edit</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,11 +56,15 @@
                     <td th:text="${p.dateNaissance}"></td>
                     <td th:text="${p.genre}"></td>
                     <td th:text="${p.enRegle}"></td>
-                    <td>
-                        <a th:onclick="deleteStudentHandler([[${p.id}]], [[${keyword}]], [[${currentPage}]])" class="btn btn-danger" >Supprimer</a>
+                    <td sec:authorize="hasAuthority('ADMIN')" >
+                        <a class="btn btn-danger" th:href="@{delete(id=${p.id}, keyword=${keyword}, page=${currentPage})}">
+                            <i class="bi bi-trash3-fill"></i>
+                        </a>
                     </td>
-                    <td>
-                        <a class="btn btn-warning" th:href="@{formEdit(id=${p.id})}">Modifier</a>
+                    <td sec:authorize="hasAuthority('ADMIN')" >
+                        <a class="btn btn-warning" th:href="@{formEdit(id=${p.id})}">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
