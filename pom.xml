@@ -12,6 +12,7 @@
         <module>1-native-ioc</module>
         <module>2-ioc-spring</module>
         <module>dependency-injection-framework</module>
+        <module>dependency-injection-framework-v2</module>
     </modules>
 
     <properties>
