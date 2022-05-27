@@ -15,6 +15,4 @@ import java.util.List;
 public class CategoryDTO {
     private Long id;
     private String nom;
-
-    private List<Product> productList;
 }
