@@ -1,5 +1,9 @@
 # Gestion des étudiants
 
+Lien de le video, cliquer sur le logo youtube
+[![Video](https://www.creads.com/wp-content/uploads/2021/05/youtube.jpg)](https://youtu.be/YPdCgY9nDsQ)
+
+
 ## Introduction
 Cette application de gestion des étudiants est développée avec Spring, on utilisant les dépendances Spring Data JPA, Spring Web et Spring Security.  
 Le but de cette application est de mettre en pratique l'approche rendu coté serveur (SSR).
